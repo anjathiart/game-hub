@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import apiClient from '../services/api-client';
 import { Text } from '@chakra-ui/react';
 
+import { Grid, GridItem, SimpleGrid } from '@chakra-ui/react';
+
 interface Game {
 	id: number;
 	name: string;
@@ -27,12 +29,12 @@ const GameGrid = () => {
 
 	return (
 		<>
-			<Text>{error && error}</Text>
-			<ul>
+			{error && <Text>{error}</Text>}
+			<SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
 				{games.map((game) => (
-					<li key={game.id}>{game.name}</li>
+					<GridItem key={game.id}>{game.name}</GridItem>
 				))}
-			</ul>
+			</SimpleGrid>
 		</>
 	);
 };
